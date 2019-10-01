@@ -18,6 +18,7 @@ import {
   TotalProducts,
   TotalProductsText,
   TotalProductsValue,
+  ProductDelete,
 } from './styles';
 
 export default class Cart extends Component {
@@ -55,13 +56,19 @@ export default class Cart extends Component {
                   <ProductDescription>{product.title}</ProductDescription>
                   <Price>R${product.price}</Price>
                 </ProductInfo>
-                <Icon name="delete-forever" size={24} color="#7159C1" />
+                <ProductDelete onPress={() => []}>
+                  <Icon name="delete-forever" size={24} color="#7159C1" />
+                </ProductDelete>
               </Product>
               <ProductActions>
                 <Actions>
-                  <Icon name="delete-forever" size={24} color="#7159C1" />
+                  <Icon
+                    name="remove-circle-outline"
+                    size={24}
+                    color="#7159C1"
+                  />
                   <ItemQuantity>0</ItemQuantity>
-                  <Icon name="delete-forever" size={24} color="#7159C1" />
+                  <Icon name="add-circle-outline" size={24} color="#7159C1" />
                 </Actions>
                 <ItemTotal>R$567.99</ItemTotal>
               </ProductActions>

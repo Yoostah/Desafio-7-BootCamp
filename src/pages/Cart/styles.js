@@ -2,8 +2,10 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
-  background: #111;
-  padding: 20px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  margin: 15px;
 `;
 
 export const Products = styled.View`
@@ -11,63 +13,45 @@ export const Products = styled.View`
   border-radius: 4px;
 `;
 export const Product = styled.View`
-  padding: 15px;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const BotaoFinalizarText = styled.Text`
-  color: #fff;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-`;
-
-export const BotaoFinalizar = styled(RectButton)`
-  background: #7159c1;
-  border: 0;
-  border-radius: 4px;
-  overflow: hidden;
-  padding: 10px;
-  margin: 10px;
   align-items: center;
 `;
 
 export const ProductInfo = styled.View`
   flex: 1;
   margin-left: 10px;
+  padding: 10px;
 `;
 export const ProductDescription = styled.Text`
   font-size: 14px;
   color: #666;
 `;
 export const Price = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin-top: 5px;
 `;
 export const ProductImage = styled.Image`
-  width: 70px;
-  height: 70px;
+  height: 80px;
+  width: 80px;
   background: #eee;
 `;
 export const ProductActions = styled.View`
   flex-direction: row;
-  justify-content: space-between;
-  background: #ddd;
-  margin: 0 10px 20px;
   align-items: center;
-  padding: 6px;
+  background: #eee;
+  padding: 8px;
   border-radius: 4px;
 `;
-export const ItemQuantity = styled.Text`
-  border: 1px solid #666;
-  border-radius: 4px;
-  color: #333;
-  padding: 5px;
-  width: 50px;
+export const ItemQuantity = styled.TextInput.attrs({
+  readonly: true,
+})`
   background: #fff;
+  padding: 5px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 52px;
 `;
 
 export const Actions = styled.View`
@@ -76,22 +60,41 @@ export const Actions = styled.View`
   align-items: center;
 `;
 export const ItemTotal = styled.Text`
-  font-size: 18px;
   font-weight: bold;
+  font-size: 16px;
+  flex: 1;
+  text-align: right;
+`;
+
+export const ProductDelete = styled.TouchableOpacity`
+  padding: 6px;
 `;
 
 export const TotalProducts = styled.View`
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 20px;
+  margin-top: 30px;
 `;
 export const TotalProductsText = styled.Text`
-  font-size: 18px;
-  text-transform: uppercase;
-  color: #ccc;
+  text-align: center;
+  color: #999;
   font-weight: bold;
 `;
 export const TotalProductsValue = styled.Text`
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 32px;
   font-weight: bold;
-  font-size: 22px;
+`;
+
+export const BotaoFinalizarText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+`;
+
+export const BotaoFinalizar = styled(RectButton)`
+  background: #7159c1;
+  padding: 12px;
+  border-radius: 4px;
 `;
