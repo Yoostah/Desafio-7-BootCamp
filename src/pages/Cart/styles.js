@@ -17,6 +17,8 @@ export const Product = styled.View`
   align-items: center;
 `;
 
+export const ProductData = styled.View``;
+
 export const ProductInfo = styled.View`
   flex: 1;
   margin-left: 10px;

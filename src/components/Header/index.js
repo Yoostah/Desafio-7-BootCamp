@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Container, Logo, Cart, ItemInCart, Items } from './styles';
+import { useSelector } from 'react-redux';
+import { Container, Logo, Cart, ItemInCart, Items, Home } from './styles';
 
-export class Header extends Component {
-  handleNavigate = () => {
-    const { navigation } = this.props;
-    navigation.navigate('Cart');
-  };
+export default function Header({ navigation }) {
+  const cartSize = useSelector(state => state.cart.length);
 
-  render() {
-    const { cartSize } = this.props;
-    return (
-      <Container>
-        <Logo />
-        <Cart onPress={() => this.handleNavigate()}>
-          <Icon name="shopping-basket" color="#FFF" size={24} />
-          <ItemInCart>
-            <Items>{cartSize}</Items>
-          </ItemInCart>
-        </Cart>
-      </Container>
-    );
+  function handleNavigate(route) {
+    navigation.navigate(route);
   }
+
+  return (
+    <Container>
+      <Home onPress={() => handleNavigate('Main')}>
+        <Logo />
+      </Home>
+      <Cart onPress={() => handleNavigate('Cart')}>
+        <Icon name="shopping-basket" color="#FFF" size={24} />
+        <ItemInCart>
+          <Items>{cartSize}</Items>
+        </ItemInCart>
+      </Cart>
+    </Container>
+  );
 }
 
 Header.propTypes = {
@@ -31,7 +31,3 @@ Header.propTypes = {
     navigate: PropTypes.func,
   }).isRequired,
 };
-
-export default connect(state => ({
-  cartSize: state.cart.length,
-}))(Header);

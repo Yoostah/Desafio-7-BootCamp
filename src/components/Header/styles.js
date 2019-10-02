@@ -9,6 +9,8 @@ export const Container = styled.View`
   background: #000;
 `;
 
+export const Home = styled.TouchableOpacity``;
+
 export const Logo = styled.Image.attrs({
   source: logo,
   resizeMode: 'cover',

@@ -1,6 +1,7 @@
 import { call, put, all, takeLatest, select } from 'redux-saga/effects';
 
-// import { toast } from 'react-toastify';
+import { Alert } from 'react-native';
+import Numeral from 'numeral';
 import api from '../../../services/api';
 
 import {
@@ -8,7 +9,9 @@ import {
   updateAmountSuccess,
   removeFromCart,
 } from './actions';
-import { formatPrice } from '../../../util/format';
+import 'numeral/locales/pt-br';
+
+Numeral.locale('pt-br');
 
 function* addToCart({ id }) {
   const productExists = yield select(state =>
@@ -22,7 +25,7 @@ function* addToCart({ id }) {
   const requiredQuantity = currentAmount + 1;
 
   if (requiredQuantity > currentStock) {
-    // toast.error('Este produto não possui estoque suficiente!');
+    Alert.alert('Este produto não possui estoque suficiente!');
     return;
   }
 
@@ -36,7 +39,7 @@ function* addToCart({ id }) {
     const data = {
       ...response.data,
       amount: 1,
-      formattedPrice: formatPrice(response.data.price),
+      formattedPrice: Numeral(response.data.price).format('$#,##0.00'),
     };
 
     yield put(addToCartSuccess(data));
@@ -52,7 +55,7 @@ function* updateAmount({ id, amount }) {
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {
-    // toast.error('Este produto não possui estoque suficiente!');
+    Alert.alert('Este produto não possui estoque suficiente!');
     return;
   }
 

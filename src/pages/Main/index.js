@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Numeral from 'numeral';
+import * as CartActions from '../../store/modules/cart/actions';
 import 'numeral/locales/pt-br';
 
 import {
@@ -21,19 +21,19 @@ import {
 
 import api from '../../services/api';
 
-function Main() {
+export default function Main() {
   Numeral.locale('pt-br');
+
+  const amountInCart = useSelector(state =>
+    state.cart.reduce((amount, product) => {
+      amount[product.id] = product.amount;
+      return amount;
+    }, {})
+  );
 
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
-
-  function addToCart(product) {
-    dispatch({
-      type: '@cart/ADD_SUCCESS',
-      product,
-    });
-  }
 
   useEffect(() => {
     async function loadProducts() {
@@ -47,6 +47,10 @@ function Main() {
 
     loadProducts();
   }, []);
+
+  function addToCart(id) {
+    dispatch(CartActions.addToCartRequest(id));
+  }
 
   return (
     <Container>
@@ -62,9 +66,9 @@ function Main() {
               <AddToCartButton>
                 <CartQty>
                   <Icon name="add-shopping-cart" color="#FFF" size={20} />
-                  <CartQtyNum>1</CartQtyNum>
+                  <CartQtyNum>{amountInCart[item.id] || 0}</CartQtyNum>
                 </CartQty>
-                <AddToCartButtonText onPress={() => addToCart(item)}>
+                <AddToCartButtonText onPress={() => addToCart(item.id)}>
                   Adicionar
                 </AddToCartButtonText>
               </AddToCartButton>
@@ -75,5 +79,3 @@ function Main() {
     </Container>
   );
 }
-
-export default connect()(Main);
