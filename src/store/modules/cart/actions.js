@@ -32,3 +32,9 @@ export function updateAmountSuccess(id, amount) {
     amount,
   };
 }
+
+export function shoppingDone() {
+  return {
+    type: '@cart/SHOPPING_DONE',
+  };
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -99,7 +100,36 @@ export default function Cart({ navigation }) {
             <TotalProductsText>Total</TotalProductsText>
             <TotalProductsValue>{total}</TotalProductsValue>
           </TotalProducts>
-          <BotaoFinalizar onPress={() => navigation.navigate('Main')}>
+          <BotaoFinalizar
+            onPress={() =>
+              Alert.alert(
+                ':: ROCKETSHOES ::',
+                'Deseja finalizar sua Compra?',
+                [
+                  {
+                    text: 'Não',
+                    onPress: () => {
+                      return false;
+                    },
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'Sim',
+                    onPress: () =>
+                      dispatch(
+                        CartActions.shoppingDone(),
+                        navigation.navigate('Main'),
+                        Alert.alert(
+                          ':: ROCKETSHOES ::',
+                          'Obrigado e Volte Sempre!'
+                        )
+                      ),
+                  },
+                ],
+                { cancelable: false }
+              )
+            }
+          >
             <BotaoFinalizarText>Finalizar Pedido</BotaoFinalizarText>
           </BotaoFinalizar>
         </Products>

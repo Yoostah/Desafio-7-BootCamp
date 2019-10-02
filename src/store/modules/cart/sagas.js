@@ -25,7 +25,10 @@ function* addToCart({ id }) {
   const requiredQuantity = currentAmount + 1;
 
   if (requiredQuantity > currentStock) {
-    Alert.alert('Este produto não possui estoque suficiente!');
+    Alert.alert(
+      ':: ROCKETSHOES ::',
+      'Este produto não possui estoque suficiente!'
+    );
     return;
   }
 
@@ -55,7 +58,10 @@ function* updateAmount({ id, amount }) {
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {
-    Alert.alert('Este produto não possui estoque suficiente!');
+    Alert.alert(
+      ':: ROCKETSHOES ::',
+      'Este produto não possui estoque suficiente!'
+    );
     return;
   }
 

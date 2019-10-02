@@ -27,6 +27,12 @@ export default function cart(state = [], action) {
       });
     }
 
+    case '@cart/SHOPPING_DONE': {
+      return produce(state, draft => {
+        draft.splice(0, draft.length);
+      });
+    }
+
     default:
       return state;
   }
