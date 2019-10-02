@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import Numeral from 'numeral';
+import 'numeral/locales/pt-br';
 
 import {
   Container,
@@ -20,16 +21,14 @@ import {
 
 import api from '../../services/api';
 
-function Main({ props }) {
-  /* static navigationOptions = {
-    title: 'RocketShoes',
-  }; */
+function Main() {
+  Numeral.locale('pt-br');
+
+  const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
 
   function addToCart(product) {
-    const { dispatch } = props;
-
     dispatch({
       type: '@cart/ADD_SUCCESS',
       product,
@@ -41,7 +40,7 @@ function Main({ props }) {
       const response = await api.get('/products');
       const data = response.data.map(product => ({
         ...product,
-        priceFormatted: Numeral(product.price).format('$0.00'),
+        priceFormatted: Numeral(product.price).format('$#,##0.00'),
       }));
       setProducts(data);
     }
@@ -53,7 +52,7 @@ function Main({ props }) {
     <Container>
       <Produtos
         data={products}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
         renderItem={({ item }) => {
           return (
             <Produto>
