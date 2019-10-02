@@ -98,3 +98,13 @@ export const BotaoFinalizar = styled(RectButton)`
   padding: 12px;
   border-radius: 4px;
 `;
+export const EmptyContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 18px;
+`;
