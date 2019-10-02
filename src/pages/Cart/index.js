@@ -3,8 +3,7 @@ import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
-import Numeral from 'numeral';
-import 'numeral/locales/pt-br';
+import Numeral from '../../util/format';
 import * as CartActions from '../../store/modules/cart/actions';
 import {
   Container,
@@ -30,7 +29,6 @@ import {
 } from './styles';
 
 export default function Cart({ navigation }) {
-  Numeral.locale('pt-br');
   const dispatch = useDispatch();
 
   const cart = useSelector(state =>

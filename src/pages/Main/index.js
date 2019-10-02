@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Numeral from 'numeral';
+import Numeral from '../../util/format';
 import * as CartActions from '../../store/modules/cart/actions';
-import 'numeral/locales/pt-br';
 
 import {
   Container,
@@ -22,8 +21,6 @@ import {
 import api from '../../services/api';
 
 export default function Main() {
-  Numeral.locale('pt-br');
-
   const amountInCart = useSelector(state =>
     state.cart.reduce((amount, product) => {
       amount[product.id] = product.amount;

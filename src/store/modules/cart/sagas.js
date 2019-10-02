@@ -1,7 +1,7 @@
 import { call, put, all, takeLatest, select } from 'redux-saga/effects';
 
 import { Alert } from 'react-native';
-import Numeral from 'numeral';
+import Numeral from '../../../util/format';
 import api from '../../../services/api';
 
 import {
@@ -9,9 +9,6 @@ import {
   updateAmountSuccess,
   removeFromCart,
 } from './actions';
-import 'numeral/locales/pt-br';
-
-Numeral.locale('pt-br');
 
 function* addToCart({ id }) {
   const productExists = yield select(state =>
